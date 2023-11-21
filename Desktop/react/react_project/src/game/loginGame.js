@@ -3,76 +3,6 @@ import StartGame from './startGame';
 import PrevPlayers from './prevPlayers';
 import Player from './player';
 import './game.css';
-// function LoginGame() {
-//     let play = {
-//         name: "",
-//         score: 0, moves: 0,
-//         averagePositions: 0,
-//         status: true,
-//         winners: 0
-//     }
-//     const [userName, setUserName] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [updateName, setUpdateName] = useState(false);
-
-//     let historyLocalPlayers = JSON.parse(localStorage.getItem('historyPlayers')) || [];
-//     let [addNewPlayer, setAddWithNewPlayer] = useState(historyLocalPlayers);
-
-
-//     let checkLocalStorage = () => {
-//         if (historyLocalPlayers.some((player) => player.name === userName)) {
-//             alert('the name already exists')
-
-//         }
-//         else {
-//             play.name = userName;
-//             setAddWithNewPlayer((prevPlayers) => [...prevPlayers, play])
-
-//             localStorage.setItem('historyPlayers', JSON.stringify([...addWithNewPlayer, play]));
-//             setUpdateName(true)
-//         }
-//         setUserName(userName = '');
-//         setPassword(password = '');
-//     };
-//     return (
-//         <div className='login'>
-//             <h1>welcome to the game</h1>
-//             <h1>Get to 100</h1>
-
-//             <div className='prevPlayers'>
-
-//                 {addWithNewPlayer != null && addWithNewPlayer.map((element, index) => {
-//                     return (
-//                         <PrevPlayers players={element}
-//                             key={index}
-//                         />
-//                     )
-//                 })}
-
-
-//             </div>
-//             <div>
-//                 <h2>login </h2>
-//                 <label> UserName:
-//                     <input type="text" value={userName} onChange={(event) => setUserName(event.target.value)} />
-//                 </label>
-//                 <br />
-//                 <label>Password:
-//                     <input type="text" value={password} onChange={(event) => setPassword(event.target.value)} />
-//                 </label>
-//                 <br />
-//                 <button onClick={checkLocalStorage}>Login</button>
-//             </div>
-//             {updateName && <StartGame />}
-//             {/* {updateName && <PrevPlayers allLocalPlayers={allLocalPlayers} />} */}
-
-//             {/* <PrevPlayers
-//             //  allLocalPlayers={allLocalPlayers}
-//             /> */}
-//             {/* <StartGame /> */}
-//         </div>
-//     );
-// }
 function LoginGame() {
     let playerState = {
         name: '',
@@ -82,7 +12,6 @@ function LoginGame() {
         status: true,
         winners: 0,
     };
-
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [updateName, setUpdateName] = useState(false);
@@ -104,26 +33,38 @@ function LoginGame() {
 
             setUpdateName(true);
         }
-
-        // Clear input fields
         setUserName('');
         setPassword('');
         console.log(addNewPlayer);
         console.log(setAddNewPlayer);
     };
+
+    addNewPlayer.sort((a, b) => b.winners - a.winners);
+    let threeWinners = addNewPlayer.slice(0, 3);
+    console.log(threeWinners);
     console.log(selectPlayers);
     return (
         <div className='login'>
             <h1>Welcome to the game</h1>
             <h1>Get to 100</h1>
-
-            <div className='prevPlayers'>
-                {addNewPlayer.map((element, index) => (
-                    <PrevPlayers key={index} currentPlayer={element}
-                        setSelectPlayers={setSelectPlayers} />
+            <div className='firstWinners'>
+                {threeWinners.map((element, index) => (
+                    <div>
+                        <h4>the {index+1} winner is </h4>
+                        <h4>name {element.name} </h4>
+                        <h4>winners {element.winners}</h4>
+                        <h4>average  {Math.floor(element.averagePositions)} </h4>
+                    </div>
                 ))}
             </div>
 
+            <div className='prevPlayers'>
+                {addNewPlayer.map((element, index) => (
+                    <PrevPlayers key={index}
+                        currentPlayer={element}
+                        setSelectPlayers={setSelectPlayers} />
+                ))}
+            </div>
             <div className='login1' style={{ display: chooseStartGame ? "block" : "none" }}>
                 <h2>Login</h2>
                 <label>

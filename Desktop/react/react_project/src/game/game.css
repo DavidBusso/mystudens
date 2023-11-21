@@ -19,7 +19,6 @@
   border-radius: 15px;
   width: 50%;
   left: 25%;
-  
 
 }
 
@@ -90,4 +89,15 @@ input.startAgain {
 input {
   cursor: pointer;
   border-radius: 15%;
+}
+.firstWinners{
+  background-color: bisque;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+ 
+}
+h4{
+text-align: center;
 }
