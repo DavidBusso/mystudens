@@ -13,7 +13,8 @@ export default function Albums() {
     const [albumsURL, setAlbumsURL] = useState([]);
     let currentUser = [];
     const open = async () => {
-        let albums = "https://jsonplaceholder.typicode.com/albums?userId=";
+        let albums ="http://localhost:5000/albums?userId="
+        let album = "https://jsonplaceholder.typicode.com/albums?userId=";
         let current = 5;
         currentUser = albums + current;
         let albumsUrl = await fetch(currentUser);
@@ -32,17 +33,11 @@ export default function Albums() {
     return (
         <div>
             album
-            {/* <ArrangementByBooleanTrue />
-            <SearchByBooleanTrue />
-            <SearchByBooleanFalse /> */}
-
             <ArrangementByLetters data={albumsURL} setData={setAlbumsURL} />
             <ArrangementByNumbers data={albumsURL} setData={setAlbumsURL} />
             <SearchByTitle data={albumsURL} setData={setAlbumsURL} />
             <EditCurrent data={albumsURL} setData={setAlbumsURL} />
             <EditNewOne data={albumsURL} setData={setAlbumsURL} />
-
-
             <table >
                 <thead >
                     <tr>

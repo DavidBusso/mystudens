@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect,createContext } from "react"
 import ArrangementByBooleanTrue from "./arrangementByBooleanTrue"
 import ArrangementByLetters from "./arrangementByLetters"
 import ArrangementByNumbers from "./arrangementByNumbers"
@@ -14,7 +14,8 @@ export default function Todo(props) {
     const [tasksURL, setTasksURL] = useState([]);
     let currentUser = [];
     const open = async () => {
-        let tasks = "https://jsonplaceholder.typicode.com/todos?userId=";
+        let tasks ="http://localhost:5000/todos?userId="
+        let task = "https://jsonplaceholder.typicode.com/todos?userId=";
         let current = 5;
         currentUser = tasks + current;
         let tasksUrl = await fetch(currentUser);
@@ -27,8 +28,6 @@ export default function Todo(props) {
     useEffect(() => {
         open();
     }, []);
-
-
     return (
         <div>
             todo
@@ -41,8 +40,6 @@ export default function Todo(props) {
             <SearchByTitle data={tasksURL} setData={setTasksURL} />
             <EditCurrent data={tasksURL} setData={setTasksURL} />
             <EditNewOne data={tasksURL} setData={setTasksURL} />
-
-
             <table >
                 <thead >
                     <tr>
