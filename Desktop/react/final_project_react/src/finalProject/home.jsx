@@ -4,17 +4,17 @@ import Posts from "./posts"
 import Todo from "./todo"
 import { useNavigate } from "react-router-dom";
 
-export default function Home(){
+export default function Home(props){
     const newNavigate=useNavigate()
-    const [album, setAlbum]=useState(false)
-    const [todo, setTodo]=useState(false)
-    const [post, setPost]=useState(false)
+    // const [album, setAlbum]=useState(false)
+    // const [todo, setTodo]=useState(false)
+    // const [post, setPost]=useState(false)
 
     return(
         <div>
-              <input type="button" value={"todo"}  onClick={()=> newNavigate('/User/Home/Todo')}/>
-              <input type="button" value={"albums"}  onClick={()=> newNavigate('/User/Home/Albums')}/>
-              <input type="button" value={"posts"}  onClick={()=> newNavigate('/User/Home/Posts')}/>
+              <input type="button" value={"todo"}  onClick={()=> newNavigate(`/User/${props.userId}/home/Todo`)}/>
+              <input type="button" value={"albums"}  onClick={()=> newNavigate(`/User/${props.userId}/home/Albums`)}/>
+              <input type="button" value={"posts"}  onClick={()=> newNavigate(`/User/${props.userId}/home/Posts`)}/>
 
 
             {/* <input type="button" value={"albums"}  onClick={()=>setAlbum(true)}/>

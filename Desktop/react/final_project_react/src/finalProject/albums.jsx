@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react"
-import ArrangementByBooleanTrue from "./arrangementByBooleanTrue"
 import ArrangementByLetters from "./arrangementByLetters"
 import ArrangementByNumbers from "./arrangementByNumbers"
 import EditCurrent from "./editCurrent"
-import EditNewOne from "./editNewOne"
-import SearchByBooleanFalse from "./searchByBooleanFalse"
+import EddNewOne from "./eddNewOne"
 import SearchByTitle from "./searchByTitle"
-import SearchByBooleanTrue from "./searchByBooleanTrue"
 
-
-export default function Albums() {
+export default function Albums(props) {
     const [albumsURL, setAlbumsURL] = useState([]);
     let currentUser = [];
     const open = async () => {
         let albums ="http://localhost:5000/albums?userId="
         let album = "https://jsonplaceholder.typicode.com/albums?userId=";
-        let current = 5;
+        let current = props.userId;
         currentUser = albums + current;
         let albumsUrl = await fetch(currentUser);
         let data = await albumsUrl.json();
@@ -37,7 +33,7 @@ export default function Albums() {
             <ArrangementByNumbers data={albumsURL} setData={setAlbumsURL} />
             <SearchByTitle data={albumsURL} setData={setAlbumsURL} />
             <EditCurrent data={albumsURL} setData={setAlbumsURL} />
-            <EditNewOne data={albumsURL} setData={setAlbumsURL} />
+            <EddNewOne data={albumsURL} setData={setAlbumsURL} />
             <table >
                 <thead >
                     <tr>

@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from "react"
+import { BrowserRouter, Routes, Route, useParamsת, Link, useNavigate } from 'react-router-dom';
 import './App.css';
 import Register from './finalProject/register';
 import Login from './finalProject/login';
@@ -9,18 +9,27 @@ import Albums from "./finalProject/albums";
 import Posts from "./finalProject/posts";
 import Todo from "./finalProject/todo";
 
-
-
 function App() {
+  // const loginNavigate = useNavigate();
+  const [userId, setUserId] = useState();
+  // const {userId}=useParams();
+  //   useEffect(() => {
+  //   console.log(userId);
+  // }, []);
+
+
   return (
     <div className="App">
+
+      {/* <input type="button" value={'login'}  onClick={()=> loginNavigate('/Login')}/> */}
       <BrowserRouter>
         <Routes>
-          {/* <Route path='/' element={<Login />}></Route> */}
-          <Route path='' element={<Home />} >  </Route>
-          <Route path='/User/Home/Todo' element={<Todo />}>  </Route>
-          <Route path='/User/Home/Albums' element={<Albums />}>   </Route>
-          <Route path='/User/Home/Posts' element={<Posts />}>  </Route>
+          <Route path='/Login' element={<Login setUserId={setUserId} />}></Route>
+          <Route path={`/User/${userId}/home`} element={<Home userId={userId} />} ></Route>
+          <Route path='/Register' element={<Register />} ></Route>
+          <Route path={`/User/${userId}/home/Todo`} element={<Todo userId={userId} />}></Route>
+          <Route path={`/User/${userId}/home/Albums`} element={<Albums userId={userId} />}></Route>
+          <Route path={`/User/${userId}/home/Posts`} element={<Posts userId={userId} />}></Route>
           {/* <Route path='*' element={<Error />}>  </Route> */}
         </Routes>
         <footer>our footer</footer>
@@ -28,5 +37,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
