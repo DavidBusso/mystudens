@@ -10,21 +10,24 @@ import Posts from "./finalProject/posts";
 import Todo from "./finalProject/todo";
 
 function App() {
-  // const loginNavigate = useNavigate();
+  const [log, setLog] = useState(true);
   const [userId, setUserId] = useState();
-  // const {userId}=useParams();
-  //   useEffect(() => {
-  //   console.log(userId);
-  // }, []);
-
-
+  const [currentName,setCurrentName]=useState("");
+  const nameOfUser=async()=>{
+    let reject =await fetch(" http://localhost:5000/users/"+userId)
+    let name =await reject.json();
+   setCurrentName(name.name);
+    console.log(name);
+  }
+  nameOfUser();
   return (
     <div className="App">
-
-      {/* <input type="button" value={'login'}  onClick={()=> loginNavigate('/Login')}/> */}
+      
+      <input type="button" value={log?'login':'logout'} onClick={() =>{setLog(false); window.location.href = '/Login'}} />
+      <h3>hello {currentName}</h3>
       <BrowserRouter>
         <Routes>
-          <Route path='/Login' element={<Login setUserId={setUserId} />}></Route>
+          <Route path='/Login' element={<Login setUserId={setUserId} setLog={setLog} />}></Route>
           <Route path={`/User/${userId}/home`} element={<Home userId={userId} />} ></Route>
           <Route path='/Register' element={<Register />} ></Route>
           <Route path={`/User/${userId}/home/Todo`} element={<Todo userId={userId} />}></Route>

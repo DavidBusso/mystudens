@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-
-export default function EditCurrent(props) {
+export default function EditCurrentStatus(props) {
     const newNavigate = useNavigate();
-    const [valueTheInput, setValueTheInput] = useState("")
+    const [statusValue, setStatusValue] = useState(null);
     const editCurrent = async () => {
         console.log(newOne);
         await add();
         await props.setData((prevData) => [...prevData, newOne])
         console.log(props.data);
         await props.open();
+        // newNavigate(`/User/${props.data.userId}/home`);
     }
+    // useEffect(() => {
+    // }, [editCurrent]);
     let newOne = {
         userId: props.data.userId,
         id: props.data.id,
-        title: valueTheInput,
-        completed: props.data.completed,
+        title: props.data.title,
+        completed: statusValue,
     }
     const add = async () => {
         await fetch('http://localhost:5000/todos/' + props.data.id, {
@@ -28,10 +30,14 @@ export default function EditCurrent(props) {
     }
     return (
         <div>
-            <label for="title"> </label>
-            <input type="text" name="title" onChange={(event) => setValueTheInput(event.target.value)} />
-            <button onClick={editCurrent}>Edit title</button>
+            <label for="status"></label>
+            <select id="status" name="status" onChange={(event) => setStatusValue(event.target.value === "true")}>
+                <option value="Choose" disabled selected>Choose</option>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+            <button onClick={editCurrent}>Edit status</button>
+
         </div>
     )
-
 }
