@@ -10,13 +10,13 @@ export default function DeleteOne(props) {
         console.log(props.data);
     }
     const deleteChoose = async () => {
-        await fetch('http://localhost:5000/todos/' + props.data.id, {
+        await fetch('http://localhost:5000/' + props.types + '/' + props.data.id, {
             method: 'DELETE',
         })
     }
     return (
         <div>
-            <button onClick={deleteOne}>deleteOne</button>
+            <button onClick={deleteOne}>delete</button>
         </div>
     )
 

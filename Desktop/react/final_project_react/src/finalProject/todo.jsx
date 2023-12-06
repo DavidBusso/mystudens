@@ -16,18 +16,11 @@ import '../cssFiles/todo.css'
 export default function Todo(props) {
     const navigate = useNavigate();
     const [tasksURL, setTasksURL] = useState([]);
-    // let [users, setUsers] = useState([]);
     const open = async () => {
         // let task = "https://jsonplaceholder.typicode.com/todos?userId=";
         let tasksUrl = await fetch("http://localhost:5000/todos?userId=" + props.userId);
         let data = await tasksUrl.json();
         setTasksURL(data)
-        // setUsers([...data])
-        console.log(tasksURL);
-        // console.log(tasksUrl);
-        console.log("data");
-
-        // console.log(users);
     }
     useEffect(() => {
         open();
@@ -39,9 +32,6 @@ export default function Todo(props) {
         <div className="todo-container">
 
             <div className="buttons-section">
-
-
-             
                 <ArrangementByBooleanFalse data={tasksURL} setData={setTasksURL} />
                 <ArrangementByBooleanTrue data={tasksURL} setData={setTasksURL} />
                 <ArrangementByLetters data={tasksURL} setData={setTasksURL} />
@@ -50,11 +40,8 @@ export default function Todo(props) {
                 <SearchByBooleanTrue data={tasksURL} setData={setTasksURL} open={open} userId={props.userId} />
             </div>
             <div>
-                <SearchByTitle data={tasksURL} setData={setTasksURL} />
-
-                <EddNewOne data={tasksURL} setData={setTasksURL} userId={props.userId} open={open}/>
-                <DeleteOne data={tasksURL} setData={setTasksURL} userId={props.userId} open={open}/>
-
+                <SearchByTitle data={tasksURL} setData={setTasksURL} types={"todos"} />
+                <EddNewOne data={tasksURL} setData={setTasksURL} userId={props.userId} open={open} types={"todos"} />
             </div>
 
             <div className="table-section">
@@ -78,10 +65,28 @@ export default function Todo(props) {
                                 <td style={{ width: '25px' }}>{element.id}</td>
                                 <td style={{ width: '200px' }}>{element.title}</td>
                                 <td style={{ width: '50px' }}>{element.completed ? "true" : "false"}</td>
-                                <td style={{ width: '150px' }}> <EditCurrentStatus data={element} setData={setTasksURL} open={open} /></td>
-                                <td style={{ width: '200px' }}> <EditCurrent data={element} setData={setTasksURL} open={open} /></td>
-                                <td style={{ width: '200px' }}> <DeleteOne data={element} setData={setTasksURL} open={open}/></td>
-                                
+                                <td style={{ width: '150px' }}>
+                                    <EditCurrentStatus
+                                        data={element}
+                                        setData={setTasksURL}
+                                        open={open}
+                                        types={"todos"}
+                                    /></td>
+                                <td style={{ width: '200px' }}>
+                                    <EditCurrent
+                                        data={element}
+                                        setData={setTasksURL}
+                                        open={open}
+                                        types={"todos"}
+                                    /></td>
+                                <td style={{ width: '200px' }}>
+                                    <DeleteOne
+                                        data={element}
+                                        setData={setTasksURL}
+                                        open={open}
+                                        types={"todos"}
+                                    /></td>
+
                             </tr>
                         ))}
                     </tbody>

@@ -1,29 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-export default function EditCurrent(props) {
+export default function EditCurrentBody(props) {
     const newNavigate = useNavigate();
     const [valueTheInput, setValueTheInput] = useState("")
-    const editCurrent = async () => {
+    const editCurrentBody = async () => {
+        console.log(newOne);
         await add();
         await props.setData((prevData) => [...prevData, newOne])
+        console.log(props.data);
         await props.open();
     }
-    let newOne={};
-    if(props.types === "todos"){
-     newOne = {
+    let newOne = {
         userId: props.data.userId,
         id: props.data.id,
-        title: valueTheInput,
-        completed: props.data.completed,
-    }}
-    if(props.types === "posts"){
-        newOne = {
-           userId: props.data.userId,
-           id: props.data.id,
-           title: valueTheInput,
-           body: props.data.body,
-       }}
+        body: valueTheInput,
+        title: props.data.title,
+    }
+
     const add = async () => {
         await fetch('http://localhost:5000/' + props.types + '/' + props.data.id, {
             method: 'PUT',
@@ -36,8 +30,9 @@ export default function EditCurrent(props) {
     return (
         <div>
             <label for="title"> </label>
-            <input type="text" name="title" onChange={(event) => setValueTheInput(event.target.value)} />
-            <button onClick={editCurrent}>Edit title</button>
+            <textarea type="text" name="title" onChange={(event) => setValueTheInput(event.target.value)} >
+            </textarea>
+            <button onClick={editCurrentBody}>Edit body</button>
         </div>
     )
 

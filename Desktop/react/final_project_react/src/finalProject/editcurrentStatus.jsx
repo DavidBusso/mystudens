@@ -4,10 +4,8 @@ export default function EditCurrentStatus(props) {
     const newNavigate = useNavigate();
     const [statusValue, setStatusValue] = useState(null);
     const editCurrent = async () => {
-        console.log(newOne);
         await add();
         await props.setData((prevData) => [...prevData, newOne])
-        console.log(props.data);
         await props.open();
         // newNavigate(`/User/${props.data.userId}/home`);
     }
@@ -37,7 +35,6 @@ export default function EditCurrentStatus(props) {
                 <option value="false">false</option>
             </select>
             <button onClick={editCurrent}>Edit status</button>
-
         </div>
     )
 }

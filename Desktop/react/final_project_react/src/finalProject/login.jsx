@@ -14,26 +14,22 @@ export default function Login(props) {
         let userUrl = await fetch("https://jsonplaceholder.typicode.com/users");
         const userData = await usersUrl.json();
         allUsers = userData;
-        console.log(allUsers);
     }
     // useEffect(() => {
     //     open();
     // }, []);
     // const { currentUser } = useParams();
     const checkUser = async (data) => {
-        console.log(data);
         await open();
         allUsers.forEach(element => {
             if (data.username === element.username && data.website === element.website) {
                 isRegistered = true
                 currentUser = element.id;
             }
-            console.log(element.username + "   " + element.website);
         });
         if (isRegistered) {
             props.setUserId(currentUser);
             newNavigate(`/User/${currentUser}/home`);
-            // newNavigate('/User:'+props.userId+'/home');
         }
         else {
             alert("you are not register")
@@ -54,9 +50,3 @@ export default function Login(props) {
     )
 
 }
-
-// const [allUsers, setAllUsers] = useState([]);
-// let users = "";
-
-
-
