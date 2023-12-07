@@ -6,6 +6,7 @@ export default function EditCurrentBody(props) {
     const [valueTheInput, setValueTheInput] = useState("")
     const editCurrentBody = async () => {
         console.log(newOne);
+        console.log(props.types);
         await add();
         await props.setData((prevData) => [...prevData, newOne])
         console.log(props.data);

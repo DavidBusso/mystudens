@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
 import ArrangementByLetters from "./arrangementByLetters"
 import ArrangementByNumbers from "./arrangementByNumbers"
-import EditCurrent from "./editCurrent"
-import EddNewOne from "./eddNewOne"
 import SearchByTitle from "./searchByTitle"
 import { useNavigate } from 'react-router-dom';
 
@@ -14,17 +12,13 @@ export default function Albums(props) {
     let currentUser = [];
     const open = async () => {
         let album = "https://jsonplaceholder.typicode.com/albums?userId=";
-        let albumsUrl = await fetch("http://localhost:5000/albums?userId=currentUser"+props.userId);
+        let albumsUrl = await fetch("http://localhost:5000/albums?userId=" + props.userId);
         let data = await albumsUrl.json();
         setAlbumsURL(data)
-        console.log(albumsURL);
-        console.log(albumsUrl);
-        console.log(data);
     }
     useEffect(() => {
         open();
-    }, []);
-
+    },[] );
 
 
     return (
@@ -33,8 +27,6 @@ export default function Albums(props) {
             <ArrangementByLetters data={albumsURL} setData={setAlbumsURL} />
             <ArrangementByNumbers data={albumsURL} setData={setAlbumsURL} />
             <SearchByTitle data={albumsURL} setData={setAlbumsURL} />
-            {/* <EditCurrent data={albumsURL} setData={setAlbumsURL} /> */}
-            {/* <EddNewOne data={albumsURL} setData={setAlbumsURL} /> */}
             <table >
                 <thead >
                     <tr>
@@ -47,18 +39,15 @@ export default function Albums(props) {
                         <tr key={index}>
                             <td style={{ width: '50px' }}>{element.id}</td>
                             <td style={{ width: '200px' }}>
-                                <div onClick={()=>newNavigate(`/User/${props.userId}/home`)}>{element.title}</div> </td>
+                                {/* <a href={`/User/${props.userId}/home/Albums/Photos`}>{element.title}</a> */}
+                                <p onClick={()=>{newNavigate(`/User/${props.userId}/home/Albums/Photos`);props.setAlbumId(element.userId)}}>{element.title}</p>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            {albumsURL.map((element, index) => (
-                <div key={index}>
-                    <p>{element.id}</p>
-                    <p onClick={()=>newNavigate(`/User/${props.userId}/home`)}>{element.title}</p>
-                </div>
-            ))}
+
 
         </div>
     )

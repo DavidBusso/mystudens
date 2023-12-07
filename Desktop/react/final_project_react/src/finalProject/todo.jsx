@@ -17,7 +17,6 @@ export default function Todo(props) {
     const navigate = useNavigate();
     const [tasksURL, setTasksURL] = useState([]);
     const open = async () => {
-        // let task = "https://jsonplaceholder.typicode.com/todos?userId=";
         let tasksUrl = await fetch("http://localhost:5000/todos?userId=" + props.userId);
         let data = await tasksUrl.json();
         setTasksURL(data)
@@ -25,9 +24,6 @@ export default function Todo(props) {
     useEffect(() => {
         open();
     }, []);
-    // useEffect(() => {
-    //     // open();
-    // }, [tasksURL]);
     return (
         <div className="todo-container">
 

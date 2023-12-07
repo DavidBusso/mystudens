@@ -3,8 +3,6 @@ body{
 }
 .todo-container {
     display: grid;
-    
-    /* Adjust the column ratio as needed */
     grid-template-rows: auto;
     gap: 20px; 
 }
@@ -12,11 +10,9 @@ body{
 .buttons-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
     gap: 10px;
 }
 
 .table-section {
     overflow: auto;
-    /* Add scrollbars if needed */
 }

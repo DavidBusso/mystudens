@@ -12,30 +12,22 @@ export default function Posts(props) {
     const [postsURL, setPostsURL] = useState([]);
     const [showBody, setShowBody] = useState(false)
     const [currentName, setCurrentName] = useState({})
-    let currentUser = [];
-    let current = props.userId;
     const open = async () => {
-        let posts = "http://localhost:5000/posts?userId="
-        let post = "https://jsonplaceholder.typicode.com/posts?userId=";
-        currentUser = posts + current;
-        let postsUrl = await fetch(currentUser);
+        let postsUrl = await fetch("https://jsonplaceholder.typicode.com/posts?userId=" + props.userId);
         let data = await postsUrl.json();
         setPostsURL(data)
-        console.log(postsURL);
-        console.log(postsUrl);
-        console.log(data);
     }
     useEffect(() => {
         open();
-        getName();
+        // getName();
     }, []);
-    const getName = async () => {
-        let getCurrentName = await fetch("http://localhost:5000/users/1")
-        let jsonCurrentName = await getCurrentName.json();
+    // const getName = async () => {
+    //     let getCurrentName = await fetch("http://localhost:5000/users/1")
+    //     let jsonCurrentName = await getCurrentName.json();
 
-        setCurrentName(jsonCurrentName);
-        console.log(currentName);
-    }
+    //     setCurrentName(jsonCurrentName);
+    //     console.log(currentName);
+    // }
 
     return (
         <div>
@@ -53,14 +45,11 @@ export default function Posts(props) {
                             <p>{"id " + post.id}</p></h3>
                         <h2>{post.title}</h2>
                         <button onClick={() => setShowBody(!showBody)}>{showBody ? "hide Body" : "read more"}</button>
-
                         <p style={{ display: showBody ? "block" : "none" }}>{post.body}</p>
                         <div>
-
                             <div style={{ width: '200px' }}> <EditCurrent data={post} setData={setPostsURL} open={open} types={"posts"} /></div>
                             <div style={{ width: '200px', display: showBody ? "block" : "none" }}> <EditCurrentBody data={post} setData={setPostsURL} open={open} types={"posts"} /></div>
                             <div style={{ width: '200px' }}> <DeleteOne data={post} setData={setPostsURL} open={open} types={"posts"} /></div>
-
                         </div>
                     </div>
                 ))}

@@ -1,26 +1,20 @@
 
-/* Container styling */
 .container {
     margin: 20px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
   }
-  
-  /* Paragraph styling */
   .container p {
     font-size: 18px;
     margin-bottom: 10px;
   }
-  
-  /* Label styling */
   .container label {
     display: block;
     margin-bottom: 5px;
     font-size: 16px;
   }
   
-  /* Input and textarea styling */
   .container input,
   .container textarea,
   .container select {
@@ -31,29 +25,22 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
-  /* Button styling */
   .container button {
-    padding: 10px;
+    /* padding: 10px; */
     background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    /* font-size: 16px; */
   }
-  
   .container button:hover {
     background-color: #45a049;
   }
-  
-  /* Additional styling for the 'body' textarea */
   .container textarea {
-    resize: vertical; /* Allow vertical resizing */
-    min-height: 100px; /* Set a minimum height */
+    resize: vertical; 
+    min-height: 100px;
   }
-  
-  /* Hide/show style for conditional rendering */
   .container div[style="display: none;"] {
     display: none;
   }
