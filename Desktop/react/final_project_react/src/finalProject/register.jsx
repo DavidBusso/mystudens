@@ -28,22 +28,15 @@ export default function Register() {
         })
         if (isRegistered) {
             newNavigate('/home');
-            
-
         }
         else {
             alert("you are not register")
             newNavigate('/Register');
         }
-
     }
-
     return (
-
         <div>
-               <form
-            onSubmit={handleSubmit(checkUser)}
-        >
+               <form onSubmit={handleSubmit(checkUser)}>
             <label htmlFor="username"></label>
             <input type="text" name="username"
                 {...register('username', { required: true })}
@@ -53,10 +46,7 @@ export default function Register() {
                 {...register('password', { required: true })}
             />
             <button>Login</button>
-        </form>
-
-          
+        </form>     
         </div>
     )
-
 }

@@ -1,3 +1,22 @@
+
+Hello
+Welcome to the project of displaying and retrieving from a functional database that we created on the computer
+To run the program please follow the instructions as we have used several models and hooks that need special installation for the project
+
+First, write in cmd of the folder - npm init
+
+To use the form hook install - npm install react-hook-form
+
+After that, routing must be installed - npm i react-router-dom
+And if there are still problems - npm audit fix --force
+
+In addition, there is a file in a separate folder called jsonData, download this file and write in the cmd of that folder - json-server --watch db.json --port 5000
+
+Which will allow an image of an external server on which we will extract and update data
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

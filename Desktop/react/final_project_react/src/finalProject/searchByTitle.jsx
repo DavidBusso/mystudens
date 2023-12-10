@@ -1,24 +1,24 @@
 export default function SearchByTitle(props) {
-    let valueTheInput="";
-    const catchTheInput = (event) => {
+    let currentUserData = [];
+    let valueTheInput = "";
+    const searchByTitle = async (event) => {
+        await openTitle();
+        await catchTheInput(event);
+    }
+    const catchTheInput = async (event) => {
         valueTheInput = event.target.value;
-        let newData = props.data.filter((a) => a.title.includes(valueTheInput))
-        props.setData((prevData) => [...prevData] = newData)
+        let newData = currentUserData.filter((a) => a.title.includes(valueTheInput))
+        props.setData(newData);
     }
-    const searchByTitle = () => {
-        console.log(valueTheInput);
-        let newData = props.data.filter((a) => a.title.includes(valueTheInput))
-        props.setData((prevData) => [...prevData] = newData)
-        console.log(newData);
+    const openTitle = async () => {
+        let tasksUrl = await fetch("http://localhost:5000/" + props.types + "?userId=" + props.userId);
+        let dataTitle = await tasksUrl.json();
+        currentUserData = dataTitle;
     }
-
-
     return (
         <div>
-            {/* <textarea name="searchTitle" id="searchTitle" cols="30" rows="10" onChange={catchTheInput}></textarea> */}
-            <input type="text" name={"searchTitle"} onChange={catchTheInput} />
-            <button onClick={searchByTitle}>SearchByTitle</button>
+            <label htmlFor="searchTitle"> search title</label>
+            <input type="text" name={"searchTitle"} onChange={searchByTitle} />
         </div>
     )
-
 }

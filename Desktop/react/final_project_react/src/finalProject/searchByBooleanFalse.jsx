@@ -1,25 +1,21 @@
-
-import { useNavigate } from 'react-router-dom';
 export default function SearchByBooleanFalse(props) {
-    const newNavigate = useNavigate();
+    let currentUserData = [];
     const searchByBooleanFalse = async () => {
-        // window.location.href = 'http://localhost:3000/User/Home/Todo';
-        // window.location.reload();
-        // newNavigate(`/User/${props.userId}/home/Todo`);
-        await props.open();
+        await openFalse();
         await filterData();
-
     }
     const filterData = async () => {
-        let newData = props.data.filter((a) => a.completed !== true)
-        props.setData((prevData) => [...prevData] = newData)
-        console.log(newData);
-
+        let newData = currentUserData.filter((a) => a.completed !== true)
+        props.setData(newData)
+    }
+    const openFalse = async () => {
+        let tasksUrl = await fetch("http://localhost:5000/todos?userId=" + props.userId);
+        let dataFalse = await tasksUrl.json();
+        currentUserData = dataFalse;
     }
     return (
         <div>
             <button onClick={searchByBooleanFalse}>SearchByBooleanFalse</button>
         </div>
     )
-
 }

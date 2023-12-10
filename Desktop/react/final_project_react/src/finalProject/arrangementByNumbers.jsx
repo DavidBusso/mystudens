@@ -1,4 +1,3 @@
-
 export default function ArrangementByNumbers(props){
     const arrangementByNumbers=()=>{
         props.data.sort((a, b) => a.id-b.id)
@@ -9,5 +8,4 @@ export default function ArrangementByNumbers(props){
             <button onClick={arrangementByNumbers}>ArrangementByNumbers</button>
         </div>
     )
-
 }

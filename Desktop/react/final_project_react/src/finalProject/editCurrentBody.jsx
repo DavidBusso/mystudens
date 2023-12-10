@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-
+import { useState } from "react";
 export default function EditCurrentBody(props) {
-    const newNavigate = useNavigate();
     const [valueTheInput, setValueTheInput] = useState("")
     const editCurrentBody = async () => {
-        console.log(newOne);
-        console.log(props.types);
         await add();
         await props.setData((prevData) => [...prevData, newOne])
-        console.log(props.data);
         await props.open();
     }
     let newOne = {
@@ -18,7 +12,6 @@ export default function EditCurrentBody(props) {
         body: valueTheInput,
         title: props.data.title,
     }
-
     const add = async () => {
         await fetch('http://localhost:5000/' + props.types + '/' + props.data.id, {
             method: 'PUT',
@@ -30,11 +23,10 @@ export default function EditCurrentBody(props) {
     }
     return (
         <div>
-            <label for="title"> </label>
-            <textarea type="text" name="title" onChange={(event) => setValueTheInput(event.target.value)} >
+            <label for="body"> </label>
+            <textarea type="text" name="body" onChange={(event) => setValueTheInput(event.target.value)} >
             </textarea>
             <button onClick={editCurrentBody}>Edit body</button>
         </div>
     )
-
 }

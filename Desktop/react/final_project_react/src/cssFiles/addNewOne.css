@@ -41,10 +41,10 @@
     resize: vertical; 
     min-height: 100px;
   }
-  .container div[style="display: none;"] {
+  /* .container div[style="display: none;"] {
     display: none;
   }
   
   .container div[style="display: block;"] {
     display: block;
-  }
+  } */

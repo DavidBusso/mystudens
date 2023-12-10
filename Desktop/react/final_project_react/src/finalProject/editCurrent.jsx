@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-
+import { useState} from "react";
 export default function EditCurrent(props) {
-    const newNavigate = useNavigate();
     const [valueTheInput, setValueTheInput] = useState("")
     const editCurrent = async () => {
         await add();
@@ -40,5 +37,4 @@ export default function EditCurrent(props) {
             <button onClick={editCurrent}>Edit title</button>
         </div>
     )
-
 }

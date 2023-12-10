@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import '../cssFiles/addNewOne.css'
 export default function EddNewOne(props) {
     const [showAdd, setShowAdd] = useState(false)
@@ -21,7 +21,7 @@ export default function EddNewOne(props) {
     if (props.types === "todos") {
         newOne = {
             completed: statusValue,
-            title: valueTheInput,
+            title: valueTheInput===true,
             userId: props.userId,
         }
     }
@@ -47,7 +47,7 @@ export default function EddNewOne(props) {
                 </div >
                 <div style={{ display: props.types === "todos" ? "block" : "none" }}>
                     <label for="status">Choose a status </label>
-                    <select id="status" name="status" onChange={(event) => setStatusValue(event.target.value)}>
+                    <select id="status" name="status" onChange={(event) => setStatusValue(event.target.value==="true")}>
                         <option value="Choose" disabled selected>Choose</option>
                         <option value="true">true</option>
                         <option value="false">false</option>
@@ -55,8 +55,6 @@ export default function EddNewOne(props) {
                 </div>
                 <button onClick={editNewOne}>EditNewOne</button>
             </div>
-
         </div>
     )
-
 }

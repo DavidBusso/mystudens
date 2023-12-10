@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react"
+import React, { useState, useEffect} from "react"
 import { useNavigate } from 'react-router-dom';
 import ArrangementByBooleanTrue from "./arrangementByBooleanTrue"
 import ArrangementByLetters from "./arrangementByLetters"
@@ -12,7 +12,6 @@ import SearchByBooleanTrue from "./searchByBooleanTrue"
 import DeleteOne from "./deleteOne"
 import EditCurrentStatus from "./editcurrentStatus";
 import '../cssFiles/todo.css'
-
 export default function Todo(props) {
     const navigate = useNavigate();
     const [tasksURL, setTasksURL] = useState([]);
@@ -26,23 +25,20 @@ export default function Todo(props) {
     }, []);
     return (
         <div className="todo-container">
-
             <div className="buttons-section">
                 <ArrangementByBooleanFalse data={tasksURL} setData={setTasksURL} />
                 <ArrangementByBooleanTrue data={tasksURL} setData={setTasksURL} />
                 <ArrangementByLetters data={tasksURL} setData={setTasksURL} />
                 <ArrangementByNumbers data={tasksURL} setData={setTasksURL} />
-                <SearchByBooleanFalse data={tasksURL} setData={setTasksURL} open={open} userId={props.userId} />
-                <SearchByBooleanTrue data={tasksURL} setData={setTasksURL} open={open} userId={props.userId} />
+                <SearchByBooleanFalse setData={setTasksURL} userId={props.userId} />
+                <SearchByBooleanTrue setData={setTasksURL} userId={props.userId} />
             </div>
             <div>
-                <SearchByTitle data={tasksURL} setData={setTasksURL} types={"todos"} />
+                <SearchByTitle setData={setTasksURL} types={"todos"} userId={props.userId} />
                 <EddNewOne data={tasksURL} setData={setTasksURL} userId={props.userId} open={open} types={"todos"} />
             </div>
 
             <div className="table-section">
-
-
                 <table >
                     <thead >
                         <tr>
@@ -52,7 +48,6 @@ export default function Todo(props) {
                             <th style={{ width: '150px' }}> adit status </th>
                             <th style={{ width: '200px' }}> adit title </th>
                             <th style={{ width: '200px' }}> delete </th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +77,6 @@ export default function Todo(props) {
                                         open={open}
                                         types={"todos"}
                                     /></td>
-
                             </tr>
                         ))}
                     </tbody>
@@ -91,6 +85,3 @@ export default function Todo(props) {
         </div>
     )
 }
-// import DeleteOne from "./deleteOne" <DeleteOne data={tasksURL} setData={setTasksURL} arr={currentUser} />
-//  <EditCurrent data={tasksURL} setData={setTasksURL} arr={currentUser} />
-//  <EditNewOne data={tasksURL} setData={setTasksURL} arr={currentUser} userNumber={current} /> 

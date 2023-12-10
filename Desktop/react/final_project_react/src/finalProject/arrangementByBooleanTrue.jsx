@@ -1,4 +1,3 @@
-
 export default function ArrangementByBooleanTrue(props){
     const arrangementByBooleanTrue=()=>{
         props.data.sort((a, b) => b.completed-a.completed)
@@ -9,5 +8,4 @@ export default function ArrangementByBooleanTrue(props){
             <button onClick={arrangementByBooleanTrue}>ArrangementByBooleanTrue</button>
         </div>
     )
-
 }

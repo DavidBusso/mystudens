@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 export default function SearchByBooleanTrue(props) {
-
-    const newNavigate = useNavigate();
+    let currentUserData = [];
     const searchByBooleanTrue = async () => {
-        // newNavigate(`/User/${props.userId}/home/Todo`);
-        await props.open();
+        await openTrue();
         await filterData();
-
     }
     const filterData = async () => {
-        let newData = props.data.filter((a) => a.completed === true)
-        await props.setData((prevData) => [...prevData] = newData)
-        console.log(newData);
+        let newData = currentUserData.filter((a) => a.completed === true)
+        await props.setData(newData)
+    }
+    const openTrue = async () => {
+        let tasksUrl = await fetch("http://localhost:5000/todos?userId=" + props.userId);
+        let dataTrue = await tasksUrl.json();
+        currentUserData = dataTrue;
     }
     return (
         <div>
             <button onClick={searchByBooleanTrue}>SearchByBooleanTrue</button>
         </div>
     )
-
 }

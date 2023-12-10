@@ -1,16 +1,11 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 export default function EditCurrentStatus(props) {
-    const newNavigate = useNavigate();
     const [statusValue, setStatusValue] = useState(null);
     const editCurrent = async () => {
         await add();
         await props.setData((prevData) => [...prevData, newOne])
         await props.open();
-        // newNavigate(`/User/${props.data.userId}/home`);
     }
-    // useEffect(() => {
-    // }, [editCurrent]);
     let newOne = {
         userId: props.data.userId,
         id: props.data.id,

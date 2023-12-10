@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { BrowserRouter, Routes, Route, useParams, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import Register from './finalProject/register';
 import Login from './finalProject/login';
 import Home from './finalProject/home';
-
 import Albums from "./finalProject/albums";
 import Posts from "./finalProject/posts";
 import Todo from "./finalProject/todo";
@@ -16,7 +15,6 @@ function App() {
   const [currentName, setCurrentName] = useState("");
   const [albumId, setAlbumId] = useState("")
   const nameOfUser = async () => {
-
     let reject = await fetch(" http://localhost:5000/users/" + userId)
     let name = await reject.json();
     setCurrentName(name.name);
@@ -36,10 +34,7 @@ function App() {
             <Route path={`/User/${userId}/home/Posts`} element={<Posts userId={userId} />}></Route>
             <Route path={`/User/${userId}/home/Albums`} element={<Albums userId={userId} setAlbumId={setAlbumId} />}></Route>
             <Route path={`/User/${userId}/home/Albums/Photos`} element={<Photos userId={userId} albumId={albumId} />}></Route>
-
-            {/* <Route path='*' element={<Error />}>  </Route> */}
           </Routes>
-          {/* <footer>our footer</footer> */}
         </BrowserRouter>
       </div>
 

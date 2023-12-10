@@ -7,7 +7,6 @@ export default function DeleteOne(props) {
     const deleteCurrent = async () => {
         await deleteChoose();
         await props.setData((prevData) => [...prevData])
-        console.log(props.data);
     }
     const deleteChoose = async () => {
         await fetch('http://localhost:5000/' + props.types + '/' + props.data.id, {
@@ -19,5 +18,4 @@ export default function DeleteOne(props) {
             <button onClick={deleteOne}>delete</button>
         </div>
     )
-
 }

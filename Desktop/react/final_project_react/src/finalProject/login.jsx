@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useParams } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
 export default function Login(props) {
     props.setLog(false);
     const { register, handleSubmit } = useForm();
@@ -11,14 +9,9 @@ export default function Login(props) {
     let allUsers = [];
     const open = async () => {
         let usersUrl = await fetch("http://localhost:5000/users");
-        let userUrl = await fetch("https://jsonplaceholder.typicode.com/users");
         const userData = await usersUrl.json();
         allUsers = userData;
     }
-    // useEffect(() => {
-    //     open();
-    // }, []);
-    // const { currentUser } = useParams();
     const checkUser = async (data) => {
         await open();
         allUsers.forEach(element => {
@@ -45,8 +38,6 @@ export default function Login(props) {
                 <input type="text" name="website"{...register('website', { required: true })} />
                 <button>Login</button>
             </form>
-
         </div>
     )
-
 }
