@@ -20,8 +20,8 @@ export default function EddNewOne(props) {
     }
     if (props.types === "todos") {
         newOne = {
-            completed: statusValue,
-            title: valueTheInput===true,
+            completed: statusValue===true,
+            title: valueTheInput,
             userId: props.userId,
         }
     }
